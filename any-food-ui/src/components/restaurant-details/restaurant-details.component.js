@@ -57,20 +57,16 @@ export default function RestaurantDetailsComponent() {
     useEffect(() => {
         (async () => {
             const restaurantDetails = await DataService.getRestaurantDetails(restaurantId);
+            const cart = await DataService.getCart();
             setModel({
                ...model,
                name: restaurantDetails.name,
                place: restaurantDetails.place,
                cuisine: restaurantDetails.cuisine,
                averagePriceForTwo: restaurantDetails.averagePriceForTwo,
-               menu: restaurantDetails.menu
+               menu: restaurantDetails.menu,
+               cart: cart
             });
-        })();
-    },[]);
-    useEffect(() => {
-        (async () => {
-            model.cart = await DataService.getCart();
-            setModel({...model});
         })();
     },[]);
     return (
