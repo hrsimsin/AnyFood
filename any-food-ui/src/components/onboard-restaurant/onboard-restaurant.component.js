@@ -8,14 +8,15 @@ class OnboardFormModel {
     place = "north bangalore";
     cuisine= "multi";
     menu=[];
-    cuisineOptions = ["multi", "chinese", "continental", "indian", "mexican"];
-    placeOptions = ["north bangalore","west bangalore","east bangalore","south bangalore"];
 }
 
 export default function OnboardRestaurantComponent() {
     const [model, setModel] = useState(new OnboardFormModel());
     const [createdId, setCreatedId] = useState("");
     const [restaurantList, setRestaurantList] = useState([]);
+
+    const cuisineOptions = ["multi", "chinese", "continental", "indian", "mexican"];
+    const placeOptions = ["north bangalore","west bangalore","east bangalore","south bangalore"];
 
     function submitEnabled() {
         if(!model.name.length || model.name.length === 0)
@@ -78,7 +79,7 @@ export default function OnboardRestaurantComponent() {
     function updateDishPrice(dishIndex, price) {
         const updatedMenu = model.menu.map((el, index) => {
             if(index === dishIndex)
-                el.dishPrice = price;
+                el.dishPrice = +price;
             return el;
         });
         setModel({
@@ -108,7 +109,7 @@ export default function OnboardRestaurantComponent() {
               Place:
               <select value={model.place} onChange={e => setModel({...model, place: e.target.value})}>
                   {
-                      model.placeOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)
+                      placeOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)
                   }
               </select>
           </label>
@@ -116,7 +117,7 @@ export default function OnboardRestaurantComponent() {
               Cuisine:
               <select value={model.cuisine} onChange={e => setModel({...model, cuisine: e.target.value})}>
                   {
-                      model.cuisineOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)
+                      cuisineOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)
                   }
               </select>
           </label>
