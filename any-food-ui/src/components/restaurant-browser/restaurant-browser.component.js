@@ -21,8 +21,11 @@ export default function RestaurantBrowser() {
 
     const restaurantDisplayList = model.restaurantList.filter(restaurant => {
         let show = true;
+        const searchQueryLC = model.searchQuery.toLowerCase();
         if(model.searchQuery) {
-            show = restaurant.name.includes(model.searchQuery) || restaurant.place.includes(model.searchQuery) || restaurant.cuisine.includes(model.searchQuery);
+            show = restaurant.name.toLowerCase().includes(searchQueryLC)
+                || restaurant.place.toLowerCase().includes(searchQueryLC)
+                || restaurant.cuisine.toLowerCase().includes(searchQueryLC);
         }
         if(model.appliedPlaceFilter !== "All" && restaurant.place.toLowerCase() !== model.appliedPlaceFilter.toLowerCase())
             show = false;
