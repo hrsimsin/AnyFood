@@ -8,7 +8,7 @@ export default function LogoutComponent() {
     useEffect(() => {
         AuthService.logout();
         setSuccess(true);
-    });
+    },[]);
 
     return(
         success && <Navigate to="/" replace={true} />
