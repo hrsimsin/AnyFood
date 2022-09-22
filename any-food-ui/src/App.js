@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 import AuthComponent from "./components/auth/auth.component";
 import HomeComponent from "./components/home/home.component";
@@ -11,7 +9,6 @@ import RestaurantDetailsComponent from "./components/restaurant-details/restaura
 import CartComponent from "./components/cart/cart.component";
 import OrderHistoryComponent from "./components/order-history/order-history.component";
 import LogoutComponent from "./components/logout/logout.component";
-import NavList from "./components/nav-list/nav-list.component";
 import RestaurantBrowser from "./components/restaurant-browser/restaurant-browser.component";
 import OnboardRestaurantComponent from "./components/onboard-restaurant/onboard-restaurant.component";
 

@@ -48,6 +48,7 @@ export default function RestaurantBrowser() {
             return b.averagePriceForTwo - a.averagePriceForTwo;
         else if(model.sortBy === "Price - Low to High")
             return a.averagePriceForTwo - b.averagePriceForTwo;
+        return a.name.localeCompare(b.name);
     });
 
     useEffect(() => {

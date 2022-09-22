@@ -36,7 +36,7 @@ export default function NavList(props) {
       <nav className="nav-list-component">
           {
               linkMap.map(el =>
-                  <div key={el.link} className={pathName == el.link ? 'nav-link selected' : 'nav-link'} onClick={props.onNavClick}>
+                  <div key={el.link} className={pathName === el.link ? 'nav-link selected' : 'nav-link'} onClick={props.onNavClick}>
                       <Link to={el.link}>{el.name}</Link>
                   </div>
               )
