@@ -33,4 +33,4 @@ jobs:
         cache: 'npm'
         cache-dependency-path: any-food-ui/package-lock.json
     - run: npm ci
-    - run: npm run build --if-present
+    - run: export DISABLE_ESLINT_PLUGIN=true && npm run build --if-present
