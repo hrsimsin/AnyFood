@@ -1,0 +1,401 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+}
+
+body, #root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #262626;
+}
+
+* {
+  color: #EFEFEF;
+}
+
+input, select {
+  background-color: #202020;
+  border: none;
+  height: 3em;
+  border-radius: 4px;
+  padding: 0 1em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-size: 0.7rem;
+}
+
+.app-title {
+  color: #F00000;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+button {
+  background-color: #F00000;
+  height: 3em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: rgba(245, 245, 245, 0.2);
+  color: #efefef;
+}
+
+.screen-component {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.screen-component.login {
+  justify-content: center;
+  align-items: center;
+  width: min(90%,30em);
+}
+
+.screen-component.login .app-title {
+  margin-bottom: 2em;
+}
+
+.screen-component.login .mode-selector {
+  width: 100%;
+  display: flex;
+  margin-bottom: 1em;
+}
+.screen-component.login .mode-selector button {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.screen-component.login .mode-selector button.selected{
+  font-weight: bold;
+  border-bottom: 2px solid #F00000;
+}
+.screen-component.login .auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1em;
+  padding: 1em;
+}
+
+.screen-component.home, .screen-component.home .menu-area {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  flex: 1;
+}
+.screen-component.home .mobile-header {
+  display: none;
+  background: #181818;
+  padding: 1em;
+  z-index: 2;
+}
+.screen-component.home .side-panel {
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+  width: max(20%,15em);
+}
+.screen-component.home .side-panel .app-title {
+  margin-top: 24px;
+  margin-left: 24px;
+}
+.screen-component.home .side-panel .username {
+  margin-left: 24px;
+  font-size: 0.8rem;
+}
+@media (max-width: 800px) {
+  .screen-component.home, .screen-component.home .menu-area {
+    flex-direction: column;
+  }
+  .screen-component.home .mobile-header {
+    display: flex;
+    position: sticky;
+    top:0;
+  }
+  .screen-component.home .side-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100%;
+    z-index: 5;
+    width: 100%;
+  }
+  .screen-component.home .side-panel.open{
+    top: 0;
+    bottom: 0;
+  }
+  .screen-component.home .side-panel .app-title {
+    display: none;
+  }
+}
+.screen-component.home .screen-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.screen-component.home .side-panel .app-title {
+  margin-bottom: 0.2em;
+}
+.nav-list-component {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.nav-list-component .nav-link {
+  width: 100%;
+  cursor: pointer;
+}
+.nav-list-component .nav-link:hover {
+  background-color: #262626;
+}
+.nav-list-component .nav-link a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1em 2em;
+}
+.nav-list-component .nav-link.selected a {
+  color: #F00000;
+  font-weight: bold;
+}
+.restaurant-browser-component {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex:1;
+}
+.restaurant-browser-component .screen-content {
+  display: flex;
+  flex-direction: column;
+}
+.restaurant-browser-component .search-group {
+  margin-bottom: 1em;
+}
+.restaurant-browser-component .search-group input.search{
+  width: 100%;
+}
+.restaurant-browser-component .sort-filter-row {
+  display: flex;
+}
+.restaurant-browser-component .filter-btn {
+  justify-self: flex-end;
+}
+.restaurant-browser-component .sort-group {
+  width: max-content;
+}
+.restaurant-list {
+  list-style: none;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%),1fr));
+  padding: 0;
+  overflow-y: scroll;
+  flex: 1 1 1px;
+}
+.restaurant-list li{
+  background: #202020;
+  padding: 1em;
+  border-radius: 1em;
+}
+.filter-menu-container{
+  position: absolute;
+  background: rgba(255,255,255,0.05);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filter-menu {
+  background-color: #181818;
+  padding: 1em;
+  border-radius: 1em;
+  width: min(90%, 25em);
+}
+.filter-menu .heading-row{
+  display: flex;
+}
+.filter-list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1em;
+}
+
+.filter-list ul {
+  margin-top: 0.5em;
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.filter-list ul li {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 0.7em;
+  padding: 0.3em 0.5em;
+}
+
+.filter-list ul li.selected {
+  background-color: #EFEFEF;
+  color: #181818;
+}
+
+.restaurant-details {
+  padding: 1em;
+}
+.restaurant-details .menu {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%),1fr));
+}
+.restaurant-details .menu li {
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #181818;
+  display: flex;
+}
+
+.cart-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.cart-component .bottom-bar{
+  display: flex;
+  width: 100%;
+  background-color: #181818;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.cart-list{
+  flex: 1 1 1px;
+  overflow-y: scroll;
+  padding: 1em;
+  list-style: none;
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-list li{
+  background: #202020;
+  padding: 1em;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+}
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+.quantity-selector * {
+  padding: 0.2em 1em;
+}
+.quantity-selector button {
+  height: 3ch;
+}
+.quantity-selector div {
+  background-color: #262626;
+  font-size: 1rem;
+}
+.full-screen-message{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.past-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  flex: 1 1 1px;
+  overflow-y: scroll;
+}
+.past-order-heading {
+  margin-bottom: 1em;
+}
+.onboard-restaurant-component {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  flex: 1 1 1px;
+  overflow-y: scroll;
+  padding: 1em;
+}
+.onboard-restaurant-component .dish {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.restaurant-list li {
+  cursor: pointer;
+}
+
+.restaurant-list .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.restaurant-list .detail {
+  font-size: 0.7rem;
+}
+.restaurant-list .detail span {
+  font-weight: bold;
+}
+.restaurant-list .menu-link{
+  width: 100%;
+  height: 100%;
+  margin-top: 1em;
+}
+
+.screen-title {
+  padding: 1em;
+  font-size: 1.1rem;
+  background-color: #181818;
+}
